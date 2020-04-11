@@ -1,9 +1,9 @@
 #!/usr/local/bin/python3
 
 '''
-This script user the Nornir to collect discovery information from Cisco
-network devices and save the output to file. Devices and parameters are 
-provided by the SimpleInventory plugin for Nornir using YAML files.
+This script uses the Nornir framework to collect discovery information from 
+Cisco network devices and save the output to file. Devices and parameters are 
+provided by the SimpleInventory plugin for Nornir using YAML files. 
 '''
 
 from datetime import datetime
