@@ -1,3 +1,5 @@
 defaults.yaml
 groups.yaml
 hosts.yaml
+inventory/LAB1_groups.yaml
+inventory/LAB1_hosts.yaml

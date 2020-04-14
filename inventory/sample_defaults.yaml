@@ -1,0 +1,13 @@
+---
+username: admin
+password: cisco
+data:
+  ise_key: c1sc0123!
+  ise_vip_a_name: ISE_A
+  ise_vip_a_ip: 10.10.10.10
+  ise_vip_a_psn1: 10.10.10.11
+  ise_vip_a_psn2: 10.10.10.12
+  ise_vip_b_name: ISE_B
+  ise_vip_b_ip: 10.10.10.20
+  ise_vip_b_psn1: 10.10.10.21
+  ise_vip_b_psn2: 10.10.10.22

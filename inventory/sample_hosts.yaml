@@ -1,0 +1,15 @@
+---
+cat3750_lab:
+  hostname: 172.20.58.41
+  groups:
+    - switches
+  data:
+    uplinks:
+      - Gi1/0/1
+    excluded_intf:
+      - Fa1/0/1
+      - Fa1/0/2
+      - Fa1/0/4
+      - Fa1/0/6
+      - Fa1/0/7
+      - Fa1/0/8

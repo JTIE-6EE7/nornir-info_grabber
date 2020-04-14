@@ -1,0 +1,866 @@
+
+
+########################################
+show version : 2020-04-14 09:58:00
+########################################
+
+Cisco IOS Software, C3750 Software (C3750-IPSERVICESK9-M), Version 12.2(55)SE12, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2017 by Cisco Systems, Inc.
+Compiled Thu 28-Sep-17 02:29 by prod_rel_team
+Image text-base: 0x01000000, data-base: 0x02F00000
+
+ROM: Bootstrap program is C3750 boot loader
+BOOTLDR: C3750 Boot Loader (C3750-HBOOT-M) Version 12.2(53r)SEY4, RELEASE SOFTWARE (fc1)
+
+cat3750_lab uptime is 4 days, 23 hours, 15 minutes
+System returned to ROM by power-on
+System image file is "flash:/c3750-ipservicesk9-mz.122-55.SE12/c3750-ipservicesk9-mz.122-55.SE12.bin"
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+cisco WS-C3750V2-24PS (PowerPC405) processor (revision S0) with 131072K bytes of memory.
+Processor board ID FDO1802Y0L3
+Last reset from power-on
+6 Virtual Ethernet interfaces
+24 FastEthernet interfaces
+2 Gigabit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+512K bytes of flash-simulated non-volatile configuration memory.
+Base ethernet MAC Address       : 50:1C:BF:FB:00:80
+Motherboard assembly number     : 73-12633-01
+Power supply part number        : 341-0266-03
+Motherboard serial number       : FDO18020M1S
+Power supply serial number      : LIT17490RSW
+Model revision number           : S0
+Motherboard revision number     : H0
+Model number                    : WS-C3750V2-24PS-S
+System serial number            : FDO1802Y0L3
+Top Assembly Part Number        : 800-33158-03
+Top Assembly Revision Number    : D0
+Version ID                      : V08
+CLEI Code Number                : CMMEE00BRB
+Hardware Board Revision Number  : 0x02
+
+
+Switch Ports Model              SW Version            SW Image                 
+------ ----- -----              ----------            ----------               
+*    1 26    WS-C3750V2-24PS    12.2(55)SE12          C3750-IPSERVICESK9-M     
+
+
+Configuration register is 0xF
+
+
+########################################
+show inventory : 2020-04-14 09:58:00
+########################################
+
+NAME: "1", DESCR: "WS-C3750V2-24PS"
+PID: WS-C3750V2-24PS-S , VID: V08  , SN: FDO1802Y0L3
+
+
+
+########################################
+show module : 2020-04-14 09:58:01
+########################################
+
+                   ^
+% Invalid input detected at '^' marker.
+
+
+########################################
+show run : 2020-04-14 09:58:03
+########################################
+
+Building configuration...
+
+Current configuration : 11303 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname cat3750_lab
+!
+boot-start-marker
+boot-end-marker
+!
+!
+username admin privilege 15 secret 5 $1$u8wd$E9fMvygIN2fMKjdJUvoBg1
+!
+!
+aaa new-model
+!
+!
+aaa group server radius ISE
+ server 158.82.9.17 auth-port 1812 acct-port 1813
+ server 158.82.9.1 auth-port 1812 acct-port 1813
+!
+aaa authentication login default local
+aaa authentication dot1x default group ISE
+aaa authorization exec default local 
+aaa authorization network default group ISE 
+aaa accounting dot1x default start-stop group ISE
+!
+!
+aaa server radius dynamic-author
+ client 158.82.9.17 server-key c1sc0123!
+ client 158.82.9.68 server-key c1sc0123!
+ client 158.82.9.69 server-key c1sc0123!
+ client 158.82.9.1 server-key c1sc0123!
+ client 158.82.9.6 server-key c1sc0123!
+ client 158.82.9.7 server-key c1sc0123!
+!
+aaa session-id common
+switch 1 provision ws-c3750v2-24ps
+system mtu routing 1500
+vtp mode transparent
+ip domain-name threefddi.local
+!
+!
+ip dhcp snooping vlan 101-103,111,201-203
+no ip dhcp snooping information option
+ip dhcp snooping
+ip device tracking
+!
+!
+crypto pki trustpoint TP-self-signed-3220897920
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3220897920
+ revocation-check none
+ rsakeypair TP-self-signed-3220897920
+!
+!
+crypto pki certificate chain TP-self-signed-3220897920
+ certificate self-signed 01
+  30820253 308201BC A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33323230 38393739 3230301E 170D3933 30333031 30303032 
+  31315A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 32323038 
+  39373932 3030819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100C82E BCD77555 D889F065 A3E0A614 30B12F01 9F9801BA 43794A26 7D4B1FD5 
+  081DBE53 9743F65C E0F40E87 74205B75 5D7A60CA 3EDCF4A3 D8332346 48D878C3 
+  779F5A20 3C080F92 5DA69150 074E5465 926F1134 2DFD948F 2328CEAE 53E7488A 
+  0F6FCF09 CD5A156C 32E95104 0C223C11 4578FB99 7B32F59D 0A38A897 23017751 
+  9CC30203 010001A3 7B307930 0F060355 1D130101 FF040530 030101FF 30260603 
+  551D1104 1F301D82 1B636174 33373530 5F6C6162 2E746872 65656664 64692E6C 
+  6F63616C 301F0603 551D2304 18301680 146DBE2B B6B2F27D 53DFE7A8 4C3C0C0F 
+  6B08BA15 C2301D06 03551D0E 04160414 6DBE2BB6 B2F27D53 DFE7A84C 3C0C0F6B 
+  08BA15C2 300D0609 2A864886 F70D0101 04050003 81810075 A8E84C67 B6ED9647 
+  BB113ECF CCD3708D EDBD0AA3 5EAAD62D FEC6CD9A FEEFBCFE D756D37B 6307E71E 
+  B614CEAA 45190363 2F4C8355 C29FB3F3 0E436F23 9B17E7B5 04A3430F 98C2AF4E 
+  83E9640C 70A73D78 87BE9625 FF7F485E B5E56122 3F262E1E D7958EAF 496D8BF3 
+  C9580CF5 C75F1FD4 16BC454B 05BA2239 63828F58 0E21F3
+  quit
+dot1x system-auth-control
+dot1x critical eapol
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+vlan 10,20 
+!
+vlan 101
+ name DATA_1.1.1.1/23
+!
+vlan 102-104,111 
+!
+vlan 176
+ name SERVERS
+!
+vlan 177
+ name VOICE
+!
+vlan 178
+ name DATA
+!
+vlan 179
+ name PRINTERS
+!
+vlan 201-202,210,220,300,400,500,600,666 
+!
+ip ssh version 2
+ip scp server enable
+!
+!
+!
+interface Loopback1
+ ip address 1.1.1.1 255.255.255.255
+!
+interface FastEthernet1/0/1
+ switchport access vlan 101
+ switchport mode access
+ authentication event fail action next-method
+ authentication event server dead action authorize vlan 101
+ authentication event server dead action authorize voice
+ authentication event server alive action reinitialize 
+ authentication host-mode multi-auth
+ authentication open
+ authentication order dot1x mab
+ authentication priority dot1x mab
+ authentication port-control auto
+ authentication periodic
+ authentication timer reauthenticate server
+ authentication timer inactivity server
+ authentication violation replace
+ mab
+ dot1x pae authenticator
+ dot1x timeout quiet-period 300
+ dot1x timeout tx-period 10
+!
+interface FastEthernet1/0/2
+ switchport access vlan 101
+ switchport mode access
+ authentication event fail action next-method
+ authentication event server dead action authorize vlan 101
+ authentication event server dead action authorize voice
+ authentication event server alive action reinitialize 
+ authentication host-mode multi-auth
+ authentication open
+ authentication order dot1x mab
+ authentication priority dot1x mab
+ authentication port-control auto
+ authentication periodic
+ authentication timer reauthenticate server
+ authentication timer inactivity server
+ authentication violation replace
+ mab
+ dot1x pae authenticator
+ dot1x timeout quiet-period 300
+ dot1x timeout tx-period 10
+!
+interface FastEthernet1/0/3
+ switchport access vlan 101
+ switchport mode access
+ authentication event fail action next-method
+ authentication event server dead action authorize vlan 101
+ authentication event server dead action authorize voice
+ authentication event server alive action reinitialize 
+ authentication host-mode multi-auth
+ authentication open
+ authentication order dot1x mab
+ authentication priority dot1x mab
+ authentication port-control auto
+ authentication periodic
+ authentication timer reauthenticate server
+ authentication timer inactivity server
+ authentication violation replace
+ mab
+ dot1x pae authenticator
+ dot1x timeout quiet-period 300
+ dot1x timeout tx-period 10
+!
+interface FastEthernet1/0/4
+ switchport access vlan 101
+ switchport mode access
+ authentication event fail action next-method
+ authentication event server dead action authorize vlan 101
+ authentication event server dead action authorize voice
+ authentication event server alive action reinitialize 
+ authentication host-mode multi-auth
+ authentication open
+ authentication order dot1x mab
+ authentication priority dot1x mab
+ authentication port-control auto
+ authentication periodic
+ authentication timer reauthenticate server
+ authentication timer inactivity server
+ authentication violation replace
+ mab
+ dot1x pae authenticator
+ dot1x timeout quiet-period 300
+ dot1x timeout tx-period 10
+!
+interface FastEthernet1/0/5
+ switchport access vlan 101
+ switchport mode access
+ authentication event fail action next-method
+ authentication event server dead action authorize vlan 101
+ authentication event server dead action authorize voice
+ authentication event server alive action reinitialize 
+ authentication host-mode multi-auth
+ authentication open
+ authentication order dot1x mab
+ authentication priority dot1x mab
+ authentication port-control auto
+ authentication periodic
+ authentication timer reauthenticate server
+ authentication timer inactivity server
+ authentication violation replace
+ mab
+ dot1x pae authenticator
+ dot1x timeout quiet-period 300
+ dot1x timeout tx-period 10
+!
+interface FastEthernet1/0/6
+ switchport access vlan 101
+ switchport mode access
+!
+interface FastEthernet1/0/7
+ switchport access vlan 101
+ switchport mode access
+!
+interface FastEthernet1/0/8
+ switchport access vlan 101
+ switchport mode access
+!
+interface FastEthernet1/0/9
+ switchport access vlan 101
+ switchport mode access
+ authentication event fail action next-method
+ authentication event server dead action authorize vlan 101
+ authentication event server dead action authorize voice
+ authentication event server alive action reinitialize 
+ authentication host-mode multi-auth
+ authentication open
+ authentication order dot1x mab
+ authentication priority dot1x mab
+ authentication port-control auto
+ authentication periodic
+ authentication timer reauthenticate server
+ authentication timer inactivity server
+ authentication violation replace
+ mab
+ dot1x pae authenticator
+ dot1x timeout quiet-period 300
+ dot1x timeout tx-period 10
+!
+interface FastEthernet1/0/10
+ switchport access vlan 101
+ switchport mode access
+ authentication event fail action next-method
+ authentication event server dead action authorize vlan 101
+ authentication event server dead action authorize voice
+ authentication event server alive action reinitialize 
+ authentication host-mode multi-auth
+ authentication open
+ authentication order dot1x mab
+ authentication priority dot1x mab
+ authentication port-control auto
+ authentication periodic
+ authentication timer reauthenticate server
+ authentication timer inactivity server
+ authentication violation replace
+ mab
+ dot1x pae authenticator
+ dot1x timeout quiet-period 300
+ dot1x timeout tx-period 10
+!
+interface FastEthernet1/0/11
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 101-103,201,202,230,300-302
+ switchport mode trunk
+ ip dhcp snooping trust
+!
+interface FastEthernet1/0/12
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 101-103,201,202,230,300-302
+ switchport mode trunk
+ ip dhcp snooping trust
+!
+interface FastEthernet1/0/13
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 101-103,201,202,230,300-302
+ switchport mode trunk
+ ip dhcp snooping trust
+!
+interface FastEthernet1/0/14
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 101-103,201,202,230,300-302
+ switchport mode trunk
+ ip dhcp snooping trust
+!
+interface FastEthernet1/0/15
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 101-103,201,202,230,300-302
+ switchport mode trunk
+ ip dhcp snooping trust
+!
+interface FastEthernet1/0/16
+!
+interface FastEthernet1/0/17
+!
+interface FastEthernet1/0/18
+!
+interface FastEthernet1/0/19
+!
+interface FastEthernet1/0/20
+!
+interface FastEthernet1/0/21
+!
+interface FastEthernet1/0/22
+!
+interface FastEthernet1/0/23
+!
+interface FastEthernet1/0/24
+!
+interface GigabitEthernet1/0/1
+ switchport access vlan 101
+ switchport mode access
+ ip dhcp snooping trust
+!
+interface GigabitEthernet1/0/2
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 101-103,201,202,230,300-302
+ switchport mode trunk
+ ip dhcp snooping trust
+!
+interface Vlan1
+ ip address 172.20.58.41 255.255.255.0
+!
+interface Vlan102
+ ip address 10.2.2.1 255.255.255.0
+ ip helper-address 158.82.9.1
+ ip helper-address 158.82.9.17
+!
+interface Vlan103
+ ip address 10.3.3.1 255.255.255.0
+ ip helper-address 158.82.9.1
+ ip helper-address 158.82.9.17
+!
+interface Vlan104
+ ip address 10.4.4.1 255.255.255.0
+ ip helper-address 158.82.9.1
+ ip helper-address 158.82.9.17
+!
+interface Vlan666
+ ip address 6.6.6.1 255.255.255.0
+!
+interface Vlan777
+ no ip address
+ ip helper-address 158.82.9.1
+ ip helper-address 158.82.9.17
+!
+ip classless
+ip http server
+ip http secure-server
+ip http secure-active-session-modules none
+ip http max-connections 20
+ip http active-session-modules none
+ip http client source-interface Vlan777
+!
+!
+ip radius source-interface Vlan777 
+!
+radius-server attribute 6 on-for-login-auth
+radius-server attribute 6 support-multiple
+radius-server attribute 8 include-in-access-req
+radius-server attribute 25 access-request include
+radius-server dead-criteria time 5 tries 3
+radius-server host 158.82.9.17 auth-port 1812 acct-port 1813 test username SVC_RADIUS_P key c1sc0123!
+radius-server host 158.82.9.1 auth-port 1812 acct-port 1813 test username SVC_RADIUS_P key c1sc0123!
+radius-server deadtime 15
+radius-server key c1sc0123!
+radius-server vsa send accounting
+radius-server vsa send authentication
+!
+vstack
+!
+line con 0
+line vty 0 4
+ exec-timeout 0 0
+line vty 5 15
+ exec-timeout 0 0
+!
+end
+
+
+########################################
+show vlan brief : 2020-04-14 09:58:04
+########################################
+
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa1/0/11, Fa1/0/12, Fa1/0/13, Fa1/0/14, Fa1/0/15, Fa1/0/16, Fa1/0/17, Fa1/0/18, Fa1/0/19, Fa1/0/20, Fa1/0/21, Fa1/0/22, Fa1/0/23, Fa1/0/24, Gi1/0/2
+10   VLAN0010                         active    
+20   VLAN0020                         active    
+101  DATA_1.1.1.1/23                  active    Fa1/0/1, Fa1/0/2, Fa1/0/3, Fa1/0/4, Fa1/0/5, Fa1/0/6, Fa1/0/7, Fa1/0/8, Fa1/0/9, Fa1/0/10, Gi1/0/1
+102  VLAN0102                         active    
+103  VLAN0103                         active    
+104  VLAN0104                         active    
+111  VLAN0111                         active    
+176  SERVERS                          active    
+177  VOICE                            active    
+178  DATA                             active    
+179  PRINTERS                         active    
+201  VLAN0201                         active    
+202  VLAN0202                         active    
+210  VLAN0210                         active    
+220  VLAN0220                         active    
+300  VLAN0300                         active    
+400  VLAN0400                         active    
+500  VLAN0500                         active    
+600  VLAN0600                         active    
+666  VLAN0666                         active    
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+
+########################################
+show vlan : 2020-04-14 09:58:04
+########################################
+
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa1/0/11, Fa1/0/12, Fa1/0/13, Fa1/0/14, Fa1/0/15, Fa1/0/16, Fa1/0/17, Fa1/0/18, Fa1/0/19, Fa1/0/20, Fa1/0/21, Fa1/0/22, Fa1/0/23, Fa1/0/24, Gi1/0/2
+10   VLAN0010                         active    
+20   VLAN0020                         active    
+101  DATA_1.1.1.1/23                  active    Fa1/0/1, Fa1/0/2, Fa1/0/3, Fa1/0/4, Fa1/0/5, Fa1/0/6, Fa1/0/7, Fa1/0/8, Fa1/0/9, Fa1/0/10, Gi1/0/1
+102  VLAN0102                         active    
+103  VLAN0103                         active    
+104  VLAN0104                         active    
+111  VLAN0111                         active    
+176  SERVERS                          active    
+177  VOICE                            active    
+178  DATA                             active    
+179  PRINTERS                         active    
+201  VLAN0201                         active    
+202  VLAN0202                         active    
+210  VLAN0210                         active    
+220  VLAN0220                         active    
+300  VLAN0300                         active    
+400  VLAN0400                         active    
+500  VLAN0500                         active    
+600  VLAN0600                         active    
+666  VLAN0666                         active    
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+
+VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+1    enet  100001     1500  -      -      -        -    -        0      0   
+10   enet  100010     1500  -      -      -        -    -        0      0   
+20   enet  100020     1500  -      -      -        -    -        0      0   
+101  enet  100101     1500  -      -      -        -    -        0      0   
+102  enet  100102     1500  -      -      -        -    -        0      0   
+103  enet  100103     1500  -      -      -        -    -        0      0   
+104  enet  100104     1500  -      -      -        -    -        0      0   
+111  enet  100111     1500  -      -      -        -    -        0      0   
+176  enet  100176     1500  -      -      -        -    -        0      0   
+177  enet  100177     1500  -      -      -        -    -        0      0   
+178  enet  100178     1500  -      -      -        -    -        0      0   
+179  enet  100179     1500  -      -      -        -    -        0      0   
+201  enet  100201     1500  -      -      -        -    -        0      0   
+202  enet  100202     1500  -      -      -        -    -        0      0   
+210  enet  100210     1500  -      -      -        -    -        0      0   
+220  enet  100220     1500  -      -      -        -    -        0      0   
+300  enet  100300     1500  -      -      -        -    -        0      0   
+400  enet  100400     1500  -      -      -        -    -        0      0   
+500  enet  100500     1500  -      -      -        -    -        0      0   
+600  enet  100600     1500  -      -      -        -    -        0      0   
+666  enet  100666     1500  -      -      -        -    -        0      0   
+1002 fddi  101002     1500  -      -      -        -    -        0      0   
+1003 tr    101003     1500  -      -      -        -    -        0      0   
+1004 fdnet 101004     1500  -      -      -        ieee -        0      0   
+1005 trnet 101005     1500  -      -      -        ibm  -        0      0   
+
+Remote SPAN VLANs
+------------------------------------------------------------------------------
+
+
+Primary Secondary Type              Ports
+------- --------- ----------------- ------------------------------------------
+
+
+########################################
+show interface status : 2020-04-14 09:58:05
+########################################
+
+
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa1/0/1                      notconnect   101          auto   auto 10/100BaseTX
+Fa1/0/2                      notconnect   101          auto   auto 10/100BaseTX
+Fa1/0/3                      notconnect   101          auto   auto 10/100BaseTX
+Fa1/0/4                      notconnect   101          auto   auto 10/100BaseTX
+Fa1/0/5                      notconnect   101          auto   auto 10/100BaseTX
+Fa1/0/6                      notconnect   101          auto   auto 10/100BaseTX
+Fa1/0/7                      notconnect   101          auto   auto 10/100BaseTX
+Fa1/0/8                      notconnect   101          auto   auto 10/100BaseTX
+Fa1/0/9                      notconnect   101          auto   auto 10/100BaseTX
+Fa1/0/10                     notconnect   101          auto   auto 10/100BaseTX
+Fa1/0/11                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/12                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/13                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/14                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/15                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/16                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/17                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/18                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/19                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/20                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/21                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/22                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/23                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/24                     connected    1          a-full  a-100 10/100BaseTX
+Gi1/0/1                      notconnect   101          auto   auto Not Present
+Gi1/0/2                      notconnect   1            auto   auto Not Present
+
+########################################
+show interface trunk : 2020-04-14 09:58:05
+########################################
+
+
+
+########################################
+show power inline : 2020-04-14 09:58:06
+########################################
+
+
+Module   Available     Used     Remaining
+          (Watts)     (Watts)    (Watts) 
+------   ---------   --------   ---------
+1           370.0        0.0       370.0
+Interface Admin  Oper       Power   Device              Class Max
+                            (Watts)                            
+--------- ------ ---------- ------- ------------------- ----- ----
+Fa1/0/1   auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/2   auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/3   auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/4   auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/5   auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/6   auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/7   auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/8   auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/9   auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/10  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/11  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/12  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/13  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/14  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/15  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/16  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/17  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/18  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/19  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/20  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/21  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/22  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/23  auto   off        0.0     n/a                 n/a   15.4 
+Fa1/0/24  auto   off        0.0     n/a                 n/a   15.4 
+
+########################################
+show ip interface brief : 2020-04-14 09:58:07
+########################################
+
+Interface              IP-Address      OK? Method Status                Protocol
+Vlan1                  172.20.58.41    YES NVRAM  up                    up      
+Vlan102                10.2.2.1        YES NVRAM  up                    down    
+Vlan103                10.3.3.1        YES NVRAM  up                    down    
+Vlan104                10.4.4.1        YES NVRAM  up                    down    
+Vlan666                6.6.6.1         YES NVRAM  up                    down    
+Vlan777                unassigned      YES NVRAM  down                  down    
+FastEthernet1/0/1      unassigned      YES unset  down                  down    
+FastEthernet1/0/2      unassigned      YES unset  down                  down    
+FastEthernet1/0/3      unassigned      YES unset  down                  down    
+FastEthernet1/0/4      unassigned      YES unset  down                  down    
+FastEthernet1/0/5      unassigned      YES unset  down                  down    
+FastEthernet1/0/6      unassigned      YES unset  down                  down    
+FastEthernet1/0/7      unassigned      YES unset  down                  down    
+FastEthernet1/0/8      unassigned      YES unset  down                  down    
+FastEthernet1/0/9      unassigned      YES unset  down                  down    
+FastEthernet1/0/10     unassigned      YES unset  down                  down    
+FastEthernet1/0/11     unassigned      YES unset  down                  down    
+FastEthernet1/0/12     unassigned      YES unset  down                  down    
+FastEthernet1/0/13     unassigned      YES unset  down                  down    
+FastEthernet1/0/14     unassigned      YES unset  down                  down    
+FastEthernet1/0/15     unassigned      YES unset  down                  down    
+FastEthernet1/0/16     unassigned      YES unset  down                  down    
+FastEthernet1/0/17     unassigned      YES unset  down                  down    
+FastEthernet1/0/18     unassigned      YES unset  down                  down    
+FastEthernet1/0/19     unassigned      YES unset  down                  down    
+FastEthernet1/0/20     unassigned      YES unset  down                  down    
+FastEthernet1/0/21     unassigned      YES unset  down                  down    
+FastEthernet1/0/22     unassigned      YES unset  down                  down    
+FastEthernet1/0/23     unassigned      YES unset  down                  down    
+FastEthernet1/0/24     unassigned      YES unset  up                    up      
+GigabitEthernet1/0/1   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/2   unassigned      YES unset  down                  down    
+Loopback1              1.1.1.1         YES NVRAM  up                    up      
+
+########################################
+show ip route : 2020-04-14 09:58:07
+########################################
+
+Default gateway is not set
+
+Host               Gateway           Last Use    Total Uses  Interface
+ICMP redirect cache is empty
+
+########################################
+show ip arp : 2020-04-14 09:58:08
+########################################
+
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  6.6.6.1                 -   501c.bffb.00c4  ARPA   Vlan666
+Internet  10.4.4.1                -   501c.bffb.00c3  ARPA   Vlan104
+Internet  10.3.3.1                -   501c.bffb.00c2  ARPA   Vlan103
+Internet  10.2.2.1                -   501c.bffb.00c1  ARPA   Vlan102
+Internet  172.20.58.41            -   501c.bffb.00c0  ARPA   Vlan1
+Internet  172.20.58.101           0   3c15.c2e7.57a8  ARPA   Vlan1
+
+########################################
+show mac address-table : 2020-04-14 09:58:08
+########################################
+
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+ All    0100.0ccc.cccc    STATIC      CPU
+ All    0100.0ccc.cccd    STATIC      CPU
+ All    0180.c200.0000    STATIC      CPU
+ All    0180.c200.0001    STATIC      CPU
+ All    0180.c200.0002    STATIC      CPU
+ All    0180.c200.0003    STATIC      CPU
+ All    0180.c200.0004    STATIC      CPU
+ All    0180.c200.0005    STATIC      CPU
+ All    0180.c200.0006    STATIC      CPU
+ All    0180.c200.0007    STATIC      CPU
+ All    0180.c200.0008    STATIC      CPU
+ All    0180.c200.0009    STATIC      CPU
+ All    0180.c200.000a    STATIC      CPU
+ All    0180.c200.000b    STATIC      CPU
+ All    0180.c200.000c    STATIC      CPU
+ All    0180.c200.000d    STATIC      CPU
+ All    0180.c200.000e    STATIC      CPU
+ All    0180.c200.000f    STATIC      CPU
+ All    0180.c200.0010    STATIC      CPU
+ All    ffff.ffff.ffff    STATIC      CPU
+   1    000c.2932.c372    DYNAMIC     Fa1/0/24
+   1    000c.293e.5a06    DYNAMIC     Fa1/0/24
+   1    000c.29b5.0623    DYNAMIC     Fa1/0/24
+   1    000c.29ce.01c1    DYNAMIC     Fa1/0/24
+   1    000c.29d0.968d    DYNAMIC     Fa1/0/24
+   1    000c.29dc.ec0b    DYNAMIC     Fa1/0/24
+   1    000c.29f3.d971    DYNAMIC     Fa1/0/24
+   1    001a.6204.88ee    DYNAMIC     Fa1/0/24
+   1    3436.3b6e.31c0    DYNAMIC     Fa1/0/24
+   1    3c15.c2e7.57a8    DYNAMIC     Fa1/0/24
+   1    5caa.fd5b.39d6    DYNAMIC     Fa1/0/24
+   1    5caa.fdf5.92b4    DYNAMIC     Fa1/0/24
+   1    7828.caab.b24c    DYNAMIC     Fa1/0/24
+   1    8c86.1e39.0b43    DYNAMIC     Fa1/0/24
+   1    949f.3ef6.d076    DYNAMIC     Fa1/0/24
+   1    c869.cd38.3548    DYNAMIC     Fa1/0/24
+   1    f44b.2a9e.9601    DYNAMIC     Fa1/0/24
+Total Mac Addresses for this criterion: 37
+
+########################################
+show cdp neighbors : 2020-04-14 09:58:09
+########################################
+
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone, 
+                  D - Remote, C - CVTA, M - Two-port Mac Relay 
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+Core-1(9APJOX2BG7N)
+                 Fas 1/0/24        166             R S C  N9K-9000v mgmt0
+CSR-2.threefddi.local
+                 Fas 1/0/24        140               R    CSR1000V  Gig 0
+CSR-1.threefddi.local
+                 Fas 1/0/24        171               R    CSR1000V  Gig 0
+Core-2(9G5Z6QK5KIC)
+                 Fas 1/0/24        150             R S C  N9K-9000v mgmt0
+
+########################################
+show cdp neighbors detail : 2020-04-14 09:58:10
+########################################
+
+-------------------------
+Device ID: Core-1(9APJOX2BG7N)
+Entry address(es): 
+  IP address: 172.20.58.61
+Platform: N9K-9000v,  Capabilities: Router Switch CVTA phone port 
+Interface: FastEthernet1/0/24,  Port ID (outgoing port): mgmt0
+Holdtime : 165 sec
+
+Version :
+Cisco Nexus Operating System (NX-OS) Software, Version 7.0(3)I7(6)
+
+advertisement version: 2
+Duplex: full
+Management address(es): 
+  IP address: 172.20.58.61
+
+-------------------------
+Device ID: CSR-2.threefddi.local
+Entry address(es): 
+  IP address: 172.20.58.52
+Platform: cisco CSR1000V,  Capabilities: Router 
+Interface: FastEthernet1/0/24,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 140 sec
+
+Version :
+Cisco IOS Software, CSR1000V Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 15.3(3)S2, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2014 by Cisco Systems, Inc.
+Compiled Fri 31-Jan-14 20:10 by mcpre
+
+advertisement version: 2
+Duplex: full
+Management address(es): 
+  IP address: 172.20.58.52
+
+-------------------------
+Device ID: CSR-1.threefddi.local
+Entry address(es): 
+  IP address: 172.20.58.51
+Platform: cisco CSR1000V,  Capabilities: Router 
+Interface: FastEthernet1/0/24,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 170 sec
+
+Version :
+Cisco IOS Software, CSR1000V Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 15.3(3)S2, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2014 by Cisco Systems, Inc.
+Compiled Fri 31-Jan-14 20:10 by mcpre
+
+advertisement version: 2
+Duplex: full
+Management address(es): 
+  IP address: 172.20.58.51
+
+-------------------------
+Device ID: Core-2(9G5Z6QK5KIC)
+Entry address(es): 
+  IP address: 172.20.58.62
+Platform: N9K-9000v,  Capabilities: Router Switch CVTA phone port 
+Interface: FastEthernet1/0/24,  Port ID (outgoing port): mgmt0
+Holdtime : 149 sec
+
+Version :
+Cisco Nexus Operating System (NX-OS) Software, Version 7.0(3)I7(6)
+
+advertisement version: 2
+Duplex: full
+Management address(es): 
+  IP address: 172.20.58.62
