@@ -48,7 +48,7 @@ def kickoff():
     )
     
     # filter The Norn
-    nr = nr.filter(platform="cisco_ios")
+    nr = nr.filter(platform="ios")
 
     c_print('Checking inventory for credentials')
     # check for existing credentials in inventory
