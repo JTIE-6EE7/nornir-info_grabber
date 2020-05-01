@@ -93,7 +93,7 @@ def grab_info(task):
     c_print(f"*** Collecting data from {task.host} ***")
     
     # set time stamp for output
-    time_stamp = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
+    time_stamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     
     # loop over commands
     for cmd in commands:
