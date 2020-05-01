@@ -97,12 +97,12 @@ def grab_info(task):
         # send command to device
         output = task.run(task=netmiko_send_command, command_string=cmd)
         # save results with timestamp to aggregate result
-        time_stamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        time_stamp = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
         task.host["info"]="\n"*2+"#"*40+"\n"+cmd+" : "+time_stamp+"\n"+"#"*40+"\n"*2+output.result
         # write output files
         task.run(
             task=files.write_file,
-            filename=f"output/{task.host}_info.txt",
+            filename=f"output/{task.host}_info_{time_stamp}.txt",
             content=task.host["info"],
             append=True
         )
