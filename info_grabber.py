@@ -74,6 +74,7 @@ def grab_info(task):
         "show module",
         "show switch detail",
         "dir /all /recursive",
+        "show boot",
         "show run",
         "show vlan brief",
         "show vlan",
@@ -86,6 +87,7 @@ def grab_info(task):
         "show mac address-table",
         "show cdp neighbors",
         "show cdp neighbors detail",
+        "show log"
         ]
 
     c_print(f"*** Collecting data from {task.host} ***")
