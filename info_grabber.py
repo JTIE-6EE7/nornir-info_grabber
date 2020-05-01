@@ -91,13 +91,14 @@ def grab_info(task):
         ]
 
     c_print(f"*** Collecting data from {task.host} ***")
-
+    
+    time_stamp = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
+    
     # loop over commands
     for cmd in commands:
         # send command to device
         output = task.run(task=netmiko_send_command, command_string=cmd)
         # save results with timestamp to aggregate result
-        time_stamp = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
         task.host["info"]="\n"*2+"#"*40+"\n"+cmd+" : "+time_stamp+"\n"+"#"*40+"\n"*2+output.result
         # write output files
         task.run(
