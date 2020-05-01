@@ -72,6 +72,7 @@ def grab_info(task):
         "show version",
         "show inventory",
         "show module",
+        "dir /all",
         "show run",
         "show vlan brief",
         "show vlan",
