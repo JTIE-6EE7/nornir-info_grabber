@@ -74,6 +74,7 @@ def grab_info(task):
         "show module",
         "show switch detail",
         "dir /all /recursive",
+        "dir /recursive all",
         "show boot",
         "show run",
         "show vlan brief",
