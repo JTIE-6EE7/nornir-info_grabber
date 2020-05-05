@@ -1,6 +1,10 @@
 ---
 username: admin
 password: cisco
+platform: ios
+connection_options:
+  netmiko:
+    platform: cisco_ios
 data:
   ise_key: c1sc0123!
   ise_vip_a_name: ISE_A
