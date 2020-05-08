@@ -127,6 +127,8 @@ def main():
     nr = kickoff()
     # run The Norn
     nr.run(task=grab_info)
+    c_print(f"Failed hosts: {nr.data.failed_hosts}")
+    print("~" * 80)
 
 
 if __name__ == "__main__":
