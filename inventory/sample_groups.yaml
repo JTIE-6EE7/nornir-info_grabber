@@ -5,13 +5,3 @@ connection_options:
   netmiko:
     platform: cisco_ios
   port: 22
-  data:
-    region: west
-    vlans:
-      - 101
-      - 102
-      - 103
-      - 111
-      - 201
-      - 202
-      - 203
