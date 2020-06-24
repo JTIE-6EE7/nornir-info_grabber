@@ -1,0 +1,9 @@
+---
+switches:
+  username: admin
+  password: cisco
+  platform: ios
+  connection_options:
+    netmiko:
+      platform: cisco_ios
+  port: 22
