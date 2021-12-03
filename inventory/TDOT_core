@@ -1,0 +1,33 @@
+---
+TMCR1Core1:
+  hostname: 10.192.8.2
+  groups:
+    - iosxe
+TMCR1Core2:
+  hostname: 10.192.8.3
+  groups:
+    - iosxe
+TMCR2Core1:
+  hostname: 10.208.8.2
+  groups:
+    - iosxe
+TMCR2Core2:
+  hostname: 10.208.8.3
+  groups:
+    - iosxe
+TMCR3Core1:
+  hostname: 10.224.8.2
+  groups:
+    - iosxe
+TMCR3Core2:
+  hostname: 10.224.8.3
+  groups:
+    - iosxe
+TMCR4Core1:
+  hostname: 10.240.8.2
+  groups:
+    - iosxe
+TMCR4Core2:
+  hostname: 10.240.8.3
+  groups:
+    - iosxe
